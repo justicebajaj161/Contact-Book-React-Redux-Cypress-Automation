@@ -134,3 +134,57 @@ describe('Contact Book App', () => {
 
 });
 
+
+describe('Redux Store', () => {
+  beforeEach(() => {
+    cy.visit(`${url}/`);
+  });
+
+  it('should have Redux store initialized', () => {
+    cy.window().its('store').should('exist');
+  });
+ it('should handle ADD_CONTACT action', () => {
+    cy.window().its('store').invoke('dispatch', {
+      type: 'ADD_CONTACT',
+      payload: {
+        id: 1,
+        name: 'Test User',
+        email: 'testuser@example.com',
+        phone: '1234567890'
+      }
+    });
+  });
+
+  it('should handle DELETE_CONTACT action', () => {
+    cy.window().its('store').invoke('dispatch', {
+      type: 'DELETE_CONTACT',
+      payload: 0
+    });
+
+  });
+
+  it('should handle UPDATE_CONTACT action', () => {
+    cy.window().its('store').invoke('dispatch', {
+      type: 'UPDATE_CONTACT',
+      payload: {
+        id: 0,
+        name: 'Updated Ninja',
+        email: 'updatedninja@codingninjas.com',
+        phone: '9876543210'
+      }
+    });
+  });
+
+  it('should handle RESET_CONTACT action', () => {
+    cy.window().its('store').invoke('dispatch', {
+      type: 'RESET_CONTACT'
+    });
+
+  });
+
+
+  
+ 
+
+});
+

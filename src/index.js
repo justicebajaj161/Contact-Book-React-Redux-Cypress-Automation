@@ -14,6 +14,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = createStore(contactReducer, composeWithDevTools());
 
+
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+}
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Provider store={store}>
